@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8" />
+	<title>Authorize Page</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+	<link rel="icon" th:href="@{/admin/images/favicon-32x32.png}" sizes="32x32"
+		type="image/png">
+		
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+  <div class="container mt-lg-5">
+    <div class="jumbotron">
+        <h1 class="display-4 font-weight-normal text-danger">Error Authorize! Access need authorization</h1>
+        <p class="lead">This is the home page of our web application. Anyone can access it, even if they have not signed in.</p>
+        <hr class="my-4">
+        <p>Using this example, you will become more familiar with Spring Security concepts:)</p> 
+        <p class="lead">
+            <a class="btn btn-primary btn-md ml-md-3" th:href="@{/login}">Back Login</a>
+            <a class="btn btn-warning btn-md" href="https://spring.io/projects/spring-security" role="button">Learn more about Spring Security</a>
+        </p>
+    </div>
+  </div>
+</body>
+</html>

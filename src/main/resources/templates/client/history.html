@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="client/layout/layout"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Layout</title>
+</head>
+<body>
+	<div layout:fragment="content">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<table>
+						<tr>
+							<th class="text-center">Title</th>
+							<th class="text-center">Date</th>
+							<th class="text-center">Mark</th>
+						</tr>
+						<tr th:each="item : ${listResult}">
+							<td class="text-center" th:text=${item.title}></td>
+							<td class="text-center" th:text=${item.createdDate}></td>
+							<td class="text-center" th:text=${item.score}></td>
+						</tr>
+					</table>
+				</div>
+			</div>
+			<hr class="featurette-divider">
+			
+			<div class="row featurette">
+				<div class="col-md-7">
+					<h2 class="featurette-heading">
+						First feature heading. <span class="text-muted">It'll blow
+							your mind.</span>
+					</h2>
+					<p class="lead">Donec ullamcorper nulla non metus auctor
+						fringilla. Vestibulum id ligula porta felis euismod semper.
+						Praesent commodo cursus magna, vel scelerisque nisl consectetur.
+						Fusce dapibus, tellus ac cursus commodo.</p>
+				</div>
+				<div class="col-md-5">
+					<img class="featurette-image img-fluid mx-auto"
+						th:src="@{/client/docs/images/sidebar-1.jpg}"
+						alt="Generic placeholder image">
+				</div>
+			</div>
+			<hr class="featurette-divider">
+			
+			<div class="row featurette">
+				<div class="col-md-7 order-md-2">
+					<h2 class="featurette-heading">
+						Oh yeah, it's that good. <span class="text-muted">See for
+							yourself.</span>
+					</h2>
+					<p class="lead">Donec ullamcorper nulla non metus auctor
+						fringilla. Vestibulum id ligula porta felis euismod semper.
+						Praesent commodo cursus magna, vel scelerisque nisl consectetur.
+						Fusce dapibus, tellus ac cursus commodo.</p>
+				</div>
+				<div class="col-md-5 order-md-1">
+					<img class="featurette-image img-fluid mx-auto"
+						th:src="@{/client/docs/images/sidebar-2.jpg}"
+						alt="Generic placeholder image">
+				</div>
+			</div>
+			<hr class="featurette-divider">
+		</div>
+	</div>
+</body>
+</html>

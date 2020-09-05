@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="client/layout/layout"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Layout</title>
+</head>
+<body>
+	<div layout:fragment="content"> 
+	  <form th:action="@{'/exercise/result/' + ${exerciseId}}" method="post" id="formResult">   
+			<div class="container">
+				<div class="row">	
+				    <div class="col-md-8" style="overflow: auto; height: 1478px">
+						<div th:each="quest: ${questList}">
+							<p class="font-weight-bold" th:text="${quest.num} +'. '+ ${quest.question}"></p>
+							<p th:text="${quest.option1}"></p>
+							<p th:text="${quest.option2}"></p>
+							<p th:text="${quest.option3}"></p>
+							<p th:text="${quest.option4}"></p>
+							<br/>
+						</div>		
+					</div>
+						 						 
+					<div class="col-md-3 offset-md-1">
+						<!-- START COUNTDOWN -->
+					    <script type="text/javascript">
+					        function doneHandler(result) {
+					            var year = result.getFullYear();
+					            var month = result.getMonth() + 1; 
+					            var day = result.getDate();
+					            var h = result.getHours();
+					            var m = result.getMinutes();
+					            var s = result.getSeconds();
+					
+					            var UTC = result.toString();
+					
+					            var output = UTC + "\n";
+					            output += "year: " + year + "\n";
+					            output += "month: " + month + "\n";
+					            output += "day: " + day + "\n";
+					            output += "h: " + h + "\n";
+					            output += "m: " + m + "\n";
+					            output += "s: " + s + "\n";
+					        }
+					        var myCountdownTest = new Countdown({
+					            time: 900,
+					            width	: 300,
+					            height	: 50,
+					            onComplete : doneHandler
+					        });
+					    </script><br/>
+					    <!-- END COUNTDOWN -->
+						<div th:each="quest: ${questList}">
+							<span class="font-weight-bold" th:text="${quest.num} + '.'"></span>&nbsp;&nbsp;&nbsp;
+					        A <input type="radio" th:name="${'answerUser['+ quest.id + ']'}" th:value="A">
+					        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					        B <input type="radio" th:name="${'answerUser['+ quest.id + ']'}" th:value="B">
+					        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					        C <input type="radio" th:name="${'answerUser['+ quest.id + ']'}" th:value="C">
+					        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					        D <input type="radio" th:name="${'answerUser['+ quest.id + ']'}" th:value="D">
+					        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					        <br/><br/>				        		        					      
+						</div>	      
+				        <input type="submit" class="btn btn-primary" value="Submit"/>
+				    </div>			
+			    </div>
+			  <hr class="featurette-divider">	
+		   </div>	
+		</form>
+		
+		<script type="text/javascript">
+		    $(document).ready(function () {		
+		    });
+		    
+		    $(function(){
+		        setTimeout(function(){
+		            $('#formResult').submit();
+		        },900000);
+		    });
+		</script>
+	</div>
+</body>
+</html>

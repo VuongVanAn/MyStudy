@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="client/layout/layout"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Layout</title>
+</head>
+<body>
+	<div layout:fragment="content"> 
+	  <form id="formResult">   
+			<div class="container">
+			   <div class="alert alert-success alert-dismissible fade show" role="alert">
+					<strong th:text="${result}"></strong>
+						<button type="button" class="close" data-dismiss="alert"
+								aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="row">			    
+				    <div class="col-md-8" style="overflow: auto; height: 1478px">
+						<div th:each="quest: ${questList}">
+							<p class="font-weight-bold" th:text="${quest.num} +'. '+ ${quest.question}"></p>																	
+							<p th:text="${quest.option1}" th:if="${quest.correct == 'A'}"></p>							                                                    					                                                                                         
+                            <p th:text="${quest.option2}" th:if="${quest.correct == 'B'}"></p>							                                                     					                                                                                         
+                            <p th:text="${quest.option3}" th:if="${quest.correct == 'C'}"></p>							                                                     					                                                                                                          
+                            <p th:text="${quest.option4}" th:if="${quest.correct == 'D'}"></p>    							                                                     					                                                                           
+							<br/>
+						</div>		
+					</div>	
+					
+					<div class="col-md-3 offset-md-1">
+						<div th:each="quest: ${questList}">
+							<span class="font-weight-bold" th:text="${quest.num} + '.'"></span>&nbsp;&nbsp;&nbsp;
+					        A <input type="radio" th:name="${'answerUser['+ quest.id + ']'}" th:value="A">
+					        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					        B <input type="radio" th:name="${'answerUser['+ quest.id + ']'}" th:value="B">
+					        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					        C <input type="radio" th:name="${'answerUser['+ quest.id + ']'}" th:value="C">
+					        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					        D <input type="radio" th:name="${'answerUser['+ quest.id + ']'}" th:value="D">
+					        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					        <br/><br/>				        		        					      
+						</div>	      
+				    </div>							 						 
+			    </div>
+			  <hr class="featurette-divider">	
+		   </div>	
+		</form>
+		
+	</div>
+</body>
+</html>

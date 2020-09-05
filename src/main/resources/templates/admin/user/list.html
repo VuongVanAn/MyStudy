@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="admin/layout/layout"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Layout</title>
+</head>
+<body>
+	<div layout:fragment="content">
+		<div class="row">
+			<div class="col-md-12">
+				<h4 class="d-inline">
+					<i class="fas fa-list"></i> User List
+				</h4>
+				<button class="btn btn-outline-success nBtn">
+					<i class="fas fa-user-plus ml-2"> Add User</i>
+				</button>
+						
+				<div class="alert alert-success alert-dismissible fade show mt-md-2"
+					role="alert" th:if="${SuccessMessage}">
+					<strong th:text="${SuccessMessage}"></strong>
+					<button type="button" class="close" data-dismiss="alert"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+
+				<div style="margin-top: 12px;">
+					<table class="table table-bordered">			
+						<thead class="thead-light">
+							<tr>
+								<th class="text-center">User Name</th>
+								<th class="text-center">Full Name</th>
+								<th class="text-center">Email</th>
+								<th class="text-center">Role</th>
+								<th class="text-center">Actions</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="user: ${userList}">
+								<td class="text-center" th:text=${user.userName}></td>
+								<td class="text-center" th:text=${user.fullName}></td>
+								<td class="text-center" th:text=${user.email}></td>
+								<td class="text-center" th:text="${user.roleName}" ></td>
+								<td class="text-center">
+								    <a th:href="@{/admin/user/findOne/{id}(id=${user.id})}"
+								     class="btn btn-outline-primary btn-sm eBtn" title="Edit User"><i class="fas fa-user-edit ml-2"></i></a>
+								    <a th:href="@{/admin/user/delete/{id}(id=${user.id})}"
+								     class="btn btn-outline-danger btn-sm delBtn" title="Delete User"><i class="fas fa-user-times ml-2"></i></a>   
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<hr />
+					<!--<ul class="pagination">
+					   <li class="mr-lg-2">Pages</li>
+					   <li class="page-item" th:each="i: ${#numbers.sequence(0, userList.totalPages - 1)}">
+					   <a th:href="@{/admin/user/list/(page=${i})}" th:text="${i + 1}" class="page-link"					
+							   th:classappend="${currentPage}==${i}?'selected':'' "></a>				
+					   </li>
+					</ul> -->
+				</div>
+			</div>
+		</div>
+		
+		<div class="myForm">
+			<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+				aria-labelledby="exampleModalLabel" aria-hidden="true">
+				<form th:action="@{/admin/user/save}" method="post">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title font-weight-bolder text-primary" 
+								    id="exampleModalLabel"><i class="fas fa-edit"></i>&nbsp;Create Or Update User</h5>
+								<button type="button" class="close" data-dismiss="modal"
+									aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							<div class="modal-body">
+								<input type="hidden" class="form-control" id="id" name="id"
+									value="" />
+									
+								<div class="form-group">
+									<label for="id" class="col-form-label">User Name</label> <input
+										type="text" class="form-control" id="userName" name="userName"
+										value="" />
+								</div>
+								
+								<div class="form-group">
+									<label for="id" class="col-form-label">Full Name</label> <input
+										type="text" class="form-control" id="fullName" name="fullName"
+										value="" />
+								</div>
+								
+								<div class="form-group">
+									<label for="id" class="col-form-label">Password</label> <input
+										type="password" class="form-control" id="password" name="password"
+										value="" />
+								</div>
+								
+								<div class="form-group">
+									<label for="name" class="col-form-label">Email</label> <input
+										type="text" class="form-control" id="email" name="email"
+										value="" />
+								</div>
+								
+								<div class="form-group">
+									<label for="capital" class="col-form-label">Role</label> <select
+										class="form-control" id="roleId" name="roleId">
+										<option th:each="role : ${roles}" th:value="${role.id}"
+											th:text="${role.name}"></option>
+									</select>
+								</div>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-secondary"
+									data-dismiss="modal">Close</button>
+								<input type="submit" class="btn btn-primary" value="Save" />
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+
+		<div class="myModal">
+			<div class="modal fade" id="exampleModalLong" tabindex="-1"
+				role="dialog" aria-labelledby="exampleModalLongTitle"
+				aria-hidden="true">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="exampleModalLongTitle">Modal
+								Delete</h5>
+							<button type="button" class="close" data-dismiss="modal"
+								aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<p class="alert alert-danger">Are you want to delete this
+								user?</p>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary"
+								data-dismiss="modal">Cancel</button>
+							<a href="" class="btn btn-danger" id="delRef">Yes, Delete</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript" th:src="@{/admin/js/user.js}"></script>
+	</div>
+</body>
+</html>

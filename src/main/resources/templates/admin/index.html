@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="admin/layout/layout" xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Layout</title>
+</head>
+<body>
+	<div layout:fragment="content">
+		<div class="row">
+			<div class="col-md-12">
+				<img th:src="@{/admin/images/background.jpg}"
+					class="img-thumbnail mx-auto d-block" style="width: 1200px;"
+					alt="Cinque Terre">
+			</div>
+		</div>
+	</div>
+</body>
+</html>
